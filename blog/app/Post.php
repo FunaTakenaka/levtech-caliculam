@@ -3,11 +3,19 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model
 {
-    public function getPaginateByLimit(int $limit_count = 10)
+    use SoftDeletes;
+    
+    protected $fillable = [
+        'title',
+        'body',
+    ];
+    
+    public function getPaginateByLimit()
     {
-    return $this->orderBy('updated_at', 'DESC')->paginate($limit_count);
+    return $this->orderBy('updated_at', 'DESC')->paginate(5);
     }
 }
