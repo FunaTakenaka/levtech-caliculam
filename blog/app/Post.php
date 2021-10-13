@@ -12,10 +12,16 @@ class Post extends Model
     protected $fillable = [
         'title',
         'body',
+        'user_id'
     ];
     
     public function getPaginateByLimit()
     {
-    return $this->orderBy('updated_at', 'DESC')->paginate(5);
+    return $this::with('user')->orderBy('updated_at', 'DESC')->paginate(5);
+    }
+    
+    public function user()
+    {
+        return $this->belongsTo('App\User');
     }
 }
