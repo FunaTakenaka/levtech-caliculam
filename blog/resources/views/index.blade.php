@@ -19,7 +19,8 @@
         <div class='posts'>
             @foreach ($posts as $post)
                 <div class='post'>
-                    <h3><a href="/posts/{{ $post->id }}">{{ $post->title }}</a>
+                    <h3><a href="/posts/{{ $post->id }}">{{ $post->title }}</a></h3>
+                    <small>{{ $post->user->name }}</small>
                     <p class='body'>{{ $post->body }}</p>
                 </div>
             @endforeach
